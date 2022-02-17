@@ -46,5 +46,23 @@ print(lemma_me(sentence))
 print(lemma_me(sentence1))
 print(lemma_me(sentence)==lemma_me(sentence1))
 
+# sentiment analysis
+from nltk.sentiment import SentimentIntensityAnalyzer
 
+nltk.download('twitter_samples')
+nltk.download("vader_lexicon")
+
+analzer = SentimentIntensityAnalyzer()
+
+text1 = "Hey, what a beauiful day! How amazing it is!"
+
+print(analzer.polarity_scores(text=text1))
+if analzer.polarity_scores(text=text1)['compound'] > 0:
+  print("positive sentence")
+
+tweet1 = nltk.corpus.twitter_samples.strings()[30]  # get sample from twitter
+print(tweet1)
+print(analzer.polarity_scores(text=tweet1))
+if analzer.polarity_scores(text=tweet1)['compound'] > 0:
+  print("positive sentence")
 
